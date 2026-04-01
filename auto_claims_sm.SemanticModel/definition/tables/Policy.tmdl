@@ -1,0 +1,96 @@
+/// Dimension table containing insurance policy details. Each row represents a unique insurance policy with attributes including policy number, type of coverage, effective dates, maximum coverage limit, and references to the associated customer and vehicle.
+table Policy
+	lineageTag: 5bbd7d3b-4966-4e99-96ad-4844bb9dbfff
+	sourceLineageTag: [dbo].[policy_dim]
+
+	/// Unique identifier for each insurance policy. Primary key of the policy dimension table.
+	column PolicyID
+		dataType: int64
+		formatString: 0
+		lineageTag: 8350228a-7998-40bd-806f-8432f80000d6
+		sourceLineageTag: Policy_ID
+		summarizeBy: none
+		sourceColumn: Policy_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// The business-facing policy number used for customer communication and documentation, formatted as POL-XXXXXX.
+	column PolicyNumber
+		dataType: string
+		lineageTag: 9e74ec61-04ae-4a93-a0fe-f138f451a2ca
+		sourceLineageTag: Policy_Number
+		summarizeBy: none
+		sourceColumn: Policy_Number
+
+		annotation synonyms = ["policy number", "policy id", "policy reference"]
+
+	/// The type of insurance coverage provided by the policy, such as Comprehensive, Liability, or Collision.
+	column PolicyType
+		dataType: string
+		lineageTag: e64c8b40-b741-4a34-bd78-5c2e14f1c26d
+		sourceLineageTag: Policy_Type
+		summarizeBy: none
+		sourceColumn: Policy_Type
+
+		annotation synonyms = ["coverage type", "insurance type", "plan type"]
+
+	/// The date when the insurance policy coverage begins or became effective.
+	column PolicyStartDate
+		dataType: string
+		lineageTag: d7741b0c-a9ee-4f9b-a588-96d04f618d09
+		sourceLineageTag: Policy_Start_Date
+		summarizeBy: none
+		sourceColumn: Policy_Start_Date
+
+		annotation synonyms = ["start date", "effective date", "inception date"]
+
+	/// The date when the insurance policy coverage expires or ends.
+	column PolicyEndDate
+		dataType: string
+		lineageTag: e9e40411-4f94-475d-aa09-120d73acef69
+		sourceLineageTag: Policy_End_Date
+		summarizeBy: none
+		sourceColumn: Policy_End_Date
+
+		annotation synonyms = ["end date", "expiration date", "expiry date", "termination date"]
+
+	/// The maximum amount in US dollars that the insurer will pay for a covered claim under this policy.
+	column CoverageLimit
+		dataType: int64
+		formatString: $#,##0
+		lineageTag: fee57171-52d1-4b32-a346-976e52ab7675
+		sourceLineageTag: Coverage_Limit
+		summarizeBy: sum
+		sourceColumn: Coverage_Limit
+
+		annotation synonyms = ["max coverage", "limit", "policy limit", "maximum payout"]
+
+	/// Foreign key referencing the policyholder associated with this policy. Links to the customer dimension table.
+	column CustomerID
+		dataType: string
+		isHidden
+		lineageTag: 285035ef-5213-4d95-bc32-567c58e09b54
+		sourceLineageTag: Customer_ID
+		summarizeBy: none
+		sourceColumn: Customer_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Foreign key referencing the vehicle covered by this policy. Links to the vehicle dimension table.
+	column VehicleID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 66501fae-1b15-4e91-981b-8ce2620bdeb8
+		sourceLineageTag: Vehicle_ID
+		summarizeBy: none
+		sourceColumn: Vehicle_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition policy_dim = entity
+		mode: directLake
+		source
+			entityName: policy_dim
+			expressionSource: 'DirectLake - autoclaimsdata'
+

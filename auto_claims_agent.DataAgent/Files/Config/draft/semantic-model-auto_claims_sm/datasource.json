@@ -1,0 +1,446 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/dataAgent/definition/dataSource/1.0.0/schema.json",
+  "artifactId": "5625563a-1074-9dfa-4865-ba334b42bbb7",
+  "workspaceId": "00000000-0000-0000-0000-000000000000",
+  "dataSourceInstructions": null,
+  "displayName": "auto_claims_sm",
+  "type": "semantic_model",
+  "userDescription": null,
+  "metadata": {
+    "csdl_relationships": "[{\"FromTable\":\"Claims\",\"FromColumn\":\"AdjusterID\",\"ToTable\":\"Adjuster\",\"ToColumn\":\"AdjusterID\",\"IsActive\":true,\"IsBidirectional\":false,\"Cardinality\":\"ManyToOne\"},{\"FromTable\":\"Claims\",\"FromColumn\":\"ClaimTypeID\",\"ToTable\":\"ClaimType\",\"ToColumn\":\"ClaimTypeID\",\"IsActive\":true,\"IsBidirectional\":false,\"Cardinality\":\"ManyToOne\"},{\"FromTable\":\"Claims\",\"FromColumn\":\"CustomerID\",\"ToTable\":\"Customer\",\"ToColumn\":\"CustomerID\",\"IsActive\":true,\"IsBidirectional\":false,\"Cardinality\":\"ManyToOne\"},{\"FromTable\":\"Claims\",\"FromColumn\":\"PolicyID\",\"ToTable\":\"Policy\",\"ToColumn\":\"PolicyID\",\"IsActive\":true,\"IsBidirectional\":false,\"Cardinality\":\"ManyToOne\"},{\"FromTable\":\"Claims\",\"FromColumn\":\"RepairShopID\",\"ToTable\":\"RepairShop\",\"ToColumn\":\"RepairShopID\",\"IsActive\":true,\"IsBidirectional\":false,\"Cardinality\":\"ManyToOne\"},{\"FromTable\":\"Claims\",\"FromColumn\":\"VehicleID\",\"ToTable\":\"Vehicle\",\"ToColumn\":\"VehicleID\",\"IsActive\":true,\"IsBidirectional\":false,\"Cardinality\":\"ManyToOne\"}]"
+  },
+  "elements": [
+    {
+      "id": "72917f5d-4692-46bb-9ab4-3fdcd27b87b6",
+      "is_selected": true,
+      "display_name": "Adjuster",
+      "type": "semantic_model.table",
+      "description": "Dimension table containing insurance claims adjuster information. Each row represents a unique adjuster with attributes including name, years of professional experience, and assigned geographic region.",
+      "children": [
+        {
+          "id": "45a61721-fa7e-416e-9a06-03603a414d2d",
+          "is_selected": true,
+          "display_name": "AdjusterID",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "Unique identifier for each claims adjuster. Primary key of the adjuster dimension table.",
+          "children": []
+        },
+        {
+          "id": "52899682-7e93-48b6-8012-8646229cf594",
+          "is_selected": true,
+          "display_name": "AdjusterName",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Full name of the insurance claims adjuster.",
+          "children": []
+        },
+        {
+          "id": "c4d5cd2e-ab83-4af6-b115-a1720ec93990",
+          "is_selected": true,
+          "display_name": "ExperienceYears",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "The number of years of professional experience the adjuster has in insurance claims processing.",
+          "children": []
+        },
+        {
+          "id": "ef591460-fd21-48a5-a700-4b7f4783eb1b",
+          "is_selected": true,
+          "display_name": "Region",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The geographic business region assigned to the adjuster for claims handling, such as West, South, East, or North.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "83df62db-50c0-4093-a7fd-b3ffd2ce0d82",
+      "is_selected": true,
+      "display_name": "Claims",
+      "type": "semantic_model.table",
+      "description": "Central fact table containing individual auto insurance claim records. Each row represents a single claim filed by a policyholder, capturing the claim amount, status, filing and closure dates, and references to the associated policy, customer, vehicle, adjuster, and repair shop.",
+      "children": [
+        {
+          "id": "ddad58a5-3601-4870-817a-c1d154bc8519",
+          "is_selected": true,
+          "display_name": "ClaimAmount",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "The monetary value of the insurance claim in US dollars, representing the total amount claimed by the policyholder.",
+          "children": []
+        },
+        {
+          "id": "8323b5c3-57d5-4bbe-9be4-a3332818fc4a",
+          "is_selected": true,
+          "display_name": "ClaimCloseDate",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The date when the insurance claim was resolved, settled, and officially closed.",
+          "children": []
+        },
+        {
+          "id": "cf872226-7d5c-4615-aa6b-7a93625d16c3",
+          "is_selected": true,
+          "display_name": "ClaimDate",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The date when the insurance claim was filed or reported by the policyholder.",
+          "children": []
+        },
+        {
+          "id": "d9719ea4-683e-4d66-a65a-065c80974d48",
+          "is_selected": true,
+          "display_name": "ClaimID",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "Unique identifier for each insurance claim. Primary key of the claims fact table.",
+          "children": []
+        },
+        {
+          "id": "922134c5-ab59-4c11-abf5-2226972785df",
+          "is_selected": true,
+          "display_name": "ClaimStatus",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The current processing status of the claim. Possible values include Open, Closed, or Under Review.",
+          "children": []
+        },
+        {
+          "id": "751ce590-7151-416b-a15a-49c51b7d658c",
+          "is_selected": true,
+          "display_name": "Count of high value claims",
+          "type": "semantic_model.measure",
+          "data_type": "Int64",
+          "description": "Count of insurance claims where the claim amount exceeds $30,000. Used to identify and track high-value claims that may require additional review, specialized handling, or management escalation.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "4f14c643-44f2-4c35-b852-62db2906439b",
+      "is_selected": true,
+      "display_name": "ClaimType",
+      "type": "semantic_model.table",
+      "description": "Dimension table containing claim type classifications. Each row represents a unique category of insurance claim such as Collision, Theft, Comprehensive, or Vandalism.",
+      "children": [
+        {
+          "id": "079d8b74-f4e4-4c1c-bf91-35cd340ac082",
+          "is_selected": true,
+          "display_name": "ClaimTypeID",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "Unique identifier for each claim type category. Primary key of the claim type dimension table.",
+          "children": []
+        },
+        {
+          "id": "f5838716-f2e0-495b-a3fa-51a5e0f30573",
+          "is_selected": true,
+          "display_name": "ClaimTypeName",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The descriptive name of the claim type category, such as Collision, Theft, Comprehensive, or Vandalism.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "9780909e-c9bc-4df6-83e8-784b69efb3dd",
+      "is_selected": true,
+      "display_name": "Customer",
+      "type": "semantic_model.table",
+      "description": "Dimension table containing policyholder demographic information. Each row represents a unique insurance customer with attributes including name, date of birth, age, gender, and residential address details.",
+      "children": [
+        {
+          "id": "f8f69ebd-f2fd-45c6-ace9-ee2c9e839c9a",
+          "is_selected": true,
+          "display_name": "Address",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The street address of the policyholder's primary residence.",
+          "children": []
+        },
+        {
+          "id": "bf29eb0d-8049-4b12-9e0d-32dabba0d8f1",
+          "is_selected": true,
+          "display_name": "Age",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "The current age of the policyholder in years, derived from date of birth.",
+          "children": []
+        },
+        {
+          "id": "d44435e6-b1e9-4c0c-870a-91f7631799f1",
+          "is_selected": true,
+          "display_name": "City",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The city where the policyholder resides.",
+          "children": []
+        },
+        {
+          "id": "3ef43fc5-7da3-4dc9-a3fe-363c9f5acfd9",
+          "is_selected": true,
+          "display_name": "CustomerID",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Unique identifier for each policyholder. Primary key of the customer dimension table.",
+          "children": []
+        },
+        {
+          "id": "bda537f1-f6d8-4959-8ff2-490f4132fdc2",
+          "is_selected": true,
+          "display_name": "CustomerName",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Full name of the insurance policyholder.",
+          "children": []
+        },
+        {
+          "id": "28e66ee6-81fb-4474-b14b-f50329d4eda3",
+          "is_selected": true,
+          "display_name": "DateOfBirth",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The date of birth of the policyholder.",
+          "children": []
+        },
+        {
+          "id": "6b29a2eb-e7e2-4efc-badc-fb487871f596",
+          "is_selected": true,
+          "display_name": "Gender",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The gender of the policyholder. Possible values include Male or Female.",
+          "children": []
+        },
+        {
+          "id": "de03baea-917d-44e6-b47d-fa1e8abd13fb",
+          "is_selected": true,
+          "display_name": "State",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The two-letter US state abbreviation where the policyholder resides, such as WA, TX, or CA.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "5bbd7d3b-4966-4e99-96ad-4844bb9dbfff",
+      "is_selected": true,
+      "display_name": "Policy",
+      "type": "semantic_model.table",
+      "description": "Dimension table containing insurance policy details. Each row represents a unique insurance policy with attributes including policy number, type of coverage, effective dates, maximum coverage limit, and references to the associated customer and vehicle.",
+      "children": [
+        {
+          "id": "fee57171-52d1-4b32-a346-976e52ab7675",
+          "is_selected": true,
+          "display_name": "CoverageLimit",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "The maximum amount in US dollars that the insurer will pay for a covered claim under this policy.",
+          "children": []
+        },
+        {
+          "id": "e9e40411-4f94-475d-aa09-120d73acef69",
+          "is_selected": true,
+          "display_name": "PolicyEndDate",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The date when the insurance policy coverage expires or ends.",
+          "children": []
+        },
+        {
+          "id": "8350228a-7998-40bd-806f-8432f80000d6",
+          "is_selected": true,
+          "display_name": "PolicyID",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "Unique identifier for each insurance policy. Primary key of the policy dimension table.",
+          "children": []
+        },
+        {
+          "id": "9e74ec61-04ae-4a93-a0fe-f138f451a2ca",
+          "is_selected": true,
+          "display_name": "PolicyNumber",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The business-facing policy number used for customer communication and documentation, formatted as POL-XXXXXX.",
+          "children": []
+        },
+        {
+          "id": "d7741b0c-a9ee-4f9b-a588-96d04f618d09",
+          "is_selected": true,
+          "display_name": "PolicyStartDate",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The date when the insurance policy coverage begins or became effective.",
+          "children": []
+        },
+        {
+          "id": "e64c8b40-b741-4a34-bd78-5c2e14f1c26d",
+          "is_selected": true,
+          "display_name": "PolicyType",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The type of insurance coverage provided by the policy, such as Comprehensive, Liability, or Collision.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "15591d90-49e0-45ce-bba3-b312b940214d",
+      "is_selected": true,
+      "display_name": "RepairShop",
+      "type": "semantic_model.table",
+      "description": "Dimension table containing auto repair shop information. Each row represents a unique repair facility with attributes including shop name, network affiliation type, contact details, geographic location, average repair duration, and area of specialty.",
+      "children": [
+        {
+          "id": "de26d80c-276d-45b2-b4c5-8735d1937756",
+          "is_selected": true,
+          "display_name": "AvgRepairDays",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "The average number of days the repair shop takes to complete vehicle repairs.",
+          "children": []
+        },
+        {
+          "id": "e4c6cae9-1bed-49f6-a437-c3efae7a9154",
+          "is_selected": true,
+          "display_name": "City",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The city where the repair shop is located.",
+          "children": []
+        },
+        {
+          "id": "b84ce65d-6664-48d0-9371-786ba02d2bff",
+          "is_selected": true,
+          "display_name": "ContactNumber",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The phone number for contacting the repair shop.",
+          "children": []
+        },
+        {
+          "id": "739a7850-ab8f-4ac0-b07f-d088e9420169",
+          "is_selected": true,
+          "display_name": "NetworkType",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The network affiliation status of the repair shop with the insurance company, such as Preferred or Independent.",
+          "children": []
+        },
+        {
+          "id": "1719ce47-3140-44c1-9e6d-05a24a0d0717",
+          "is_selected": true,
+          "display_name": "RepairShopID",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "Unique identifier for each auto repair shop. Primary key of the repair shop dimension table.",
+          "children": []
+        },
+        {
+          "id": "ead204a5-b617-4a79-bb8f-8e7e8a36cc81",
+          "is_selected": true,
+          "display_name": "ShopName",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The business name of the auto repair facility.",
+          "children": []
+        },
+        {
+          "id": "992861c3-54b1-415b-9563-5e788ddc06e4",
+          "is_selected": true,
+          "display_name": "Specialty",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The primary area of expertise or service specialization of the repair shop, such as Collision and Paint or Frame Repair.",
+          "children": []
+        },
+        {
+          "id": "db9109c1-b1c8-425e-a4c6-62ea368d9f13",
+          "is_selected": true,
+          "display_name": "State",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The two-letter US state abbreviation where the repair shop is located, such as WA, TX, or CA.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "6e25d2c1-40bd-47c2-a964-b416401b7c1e",
+      "is_selected": true,
+      "display_name": "Vehicle",
+      "type": "semantic_model.table",
+      "description": "Dimension table containing details about insured vehicles. Each row represents a unique vehicle with attributes including make, model, year, body type classification, and estimated market value.",
+      "children": [
+        {
+          "id": "5e7080d6-ffa0-498f-8328-befe43540526",
+          "is_selected": true,
+          "display_name": "Make",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The manufacturer or brand of the vehicle, such as Toyota, Honda, or Ford.",
+          "children": []
+        },
+        {
+          "id": "8a9c3a00-b318-45c9-b9d1-84d8d1129cd6",
+          "is_selected": true,
+          "display_name": "Model",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The specific model name of the vehicle, such as Camry, CR-V, or F-150.",
+          "children": []
+        },
+        {
+          "id": "0ec3efbf-b91a-43f5-ac92-4aeb5e175df1",
+          "is_selected": true,
+          "display_name": "Value",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "The estimated current market value of the vehicle in US dollars.",
+          "children": []
+        },
+        {
+          "id": "222e781e-d6c1-46b7-bc0e-89503ae1c1e7",
+          "is_selected": true,
+          "display_name": "VehicleID",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "Unique identifier for each insured vehicle. Primary key of the vehicle dimension table.",
+          "children": []
+        },
+        {
+          "id": "5fb50dfa-f454-4253-970d-0e613c2e06b3",
+          "is_selected": true,
+          "display_name": "VehicleType",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "The body style classification of the vehicle, such as Sedan, SUV, Truck, or Coupe.",
+          "children": []
+        },
+        {
+          "id": "ab1860b5-ec58-4526-b692-dea718d22bf2",
+          "is_selected": true,
+          "display_name": "VIN",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Vehicle Identification Number (VIN), a unique 17-character alphanumeric code assigned to every motor vehicle at manufacture.",
+          "children": []
+        },
+        {
+          "id": "e1f762a7-afca-4baf-9b02-927024bd024b",
+          "is_selected": true,
+          "display_name": "Year",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "The model year of the vehicle, indicating the year of manufacture or release.",
+          "children": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+expression 'DirectLake - autoclaimsdata' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/c02b4576-1584-40be-9f45-199c6a36437e/dab98636-1291-4c03-876c-74071a46c00a", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 2b98b5fd-085a-45ac-9fd4-540209e41378
+
+	annotation PBI_IncludeFutureArtifacts = False
+

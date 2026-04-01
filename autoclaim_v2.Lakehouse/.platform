@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "autoclaim_v2"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "94a773f4-8f52-8ab3-4e09-409fdb139d58"
+  }
+}

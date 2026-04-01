@@ -1,0 +1,53 @@
+/// Dimension table containing insurance claims adjuster information. Each row represents a unique adjuster with attributes including name, years of professional experience, and assigned geographic region.
+table Adjuster
+	lineageTag: 72917f5d-4692-46bb-9ab4-3fdcd27b87b6
+	sourceLineageTag: [dbo].[adjuster_dim]
+
+	/// Unique identifier for each claims adjuster. Primary key of the adjuster dimension table.
+	column AdjusterID
+		dataType: int64
+		formatString: 0
+		lineageTag: 45a61721-fa7e-416e-9a06-03603a414d2d
+		sourceLineageTag: Adjuster_ID
+		summarizeBy: none
+		sourceColumn: Adjuster_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Full name of the insurance claims adjuster.
+	column AdjusterName
+		dataType: string
+		lineageTag: 52899682-7e93-48b6-8012-8646229cf594
+		sourceLineageTag: Adjuster_Name
+		summarizeBy: none
+		sourceColumn: Adjuster_Name
+
+		annotation synonyms = ["adjuster name", "evaluator name", "assessor name"]
+
+	/// The number of years of professional experience the adjuster has in insurance claims processing.
+	column ExperienceYears
+		dataType: int64
+		formatString: 0
+		lineageTag: c4d5cd2e-ab83-4af6-b115-a1720ec93990
+		sourceLineageTag: Experience_Years
+		summarizeBy: none
+		sourceColumn: Experience_Years
+
+		annotation synonyms = ["years of experience", "tenure", "seniority"]
+
+	/// The geographic business region assigned to the adjuster for claims handling, such as West, South, East, or North.
+	column Region
+		dataType: string
+		lineageTag: ef591460-fd21-48a5-a700-4b7f4783eb1b
+		sourceLineageTag: Region
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation synonyms = ["territory", "area", "geographic region", "assigned region"]
+
+	partition adjuster_dim = entity
+		mode: directLake
+		source
+			entityName: adjuster_dim
+			expressionSource: 'DirectLake - autoclaimsdata'
+

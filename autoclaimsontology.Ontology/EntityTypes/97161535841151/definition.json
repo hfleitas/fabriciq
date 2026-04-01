@@ -1,0 +1,44 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/entityType/1.0.0/schema.json",
+  "id": "97161535841151",
+  "namespace": "usertypes",
+  "baseEntityTypeId": null,
+  "name": "Adjuster",
+  "entityIdParts": [
+    "5502933752396020825"
+  ],
+  "displayNamePropertyId": "5502933780021049855",
+  "namespaceType": "Imported",
+  "visibility": "Visible",
+  "properties": [
+    {
+      "id": "5502933752396020825",
+      "name": "Adjuster_ID",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "BigInt"
+    },
+    {
+      "id": "5502933780021049855",
+      "name": "Adjuster_Name",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5502933802822536589",
+      "name": "Experience_Years",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "BigInt"
+    },
+    {
+      "id": "5502933830031021623",
+      "name": "Region",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    }
+  ],
+  "timeseriesProperties": []
+}

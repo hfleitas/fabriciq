@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/contextualization/1.0.0/schema.json",
+  "id": "5584b03c-1ed6-42bb-a952-c393577806da",
+  "dataBindingTable": {
+    "workspaceId": "00000000-0000-0000-0000-000000000000",
+    "itemId": "1a46c00a-7407-876c-4c03-1291dab98636",
+    "sourceTableName": "claims_fact",
+    "sourceSchema": null,
+    "sourceType": "LakehouseTable"
+  },
+  "sourceKeyRefBindings": [
+    {
+      "sourceColumnName": "Claim_ID",
+      "targetPropertyId": "5502933430493699985"
+    }
+  ],
+  "targetKeyRefBindings": [
+    {
+      "sourceColumnName": "Vehicle_ID",
+      "targetPropertyId": "5502931717429066971"
+    }
+  ]
+}

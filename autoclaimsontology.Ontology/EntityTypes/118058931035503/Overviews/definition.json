@@ -1,0 +1,41 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/overviews/1.0.0/schema.json",
+  "widgets": [
+    {
+      "type": "graph",
+      "id": "1e839592-9d84-49aa-9d0b-d578cbb369e5",
+      "title": null
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502931801847246231",
+      "id": "8f3da522-9e4a-458a-869c-64539a1c2a3b",
+      "title": "Make"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502931829916693974",
+      "id": "19348d4b-2342-4e84-9b2f-7edf583ca630",
+      "title": "Model"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502931851209817191",
+      "id": "2955bb06-63b2-4a35-a911-47af489f7a83",
+      "title": "Year"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502931875580666969",
+      "id": "f44796b8-ce82-432b-ae0b-8cf7fc469d3b",
+      "title": "Vehicle_Type"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502931898309616778",
+      "id": "3b007be4-dccf-47de-ba44-acd56f53bfe3",
+      "title": "Value"
+    }
+  ],
+  "settings": null
+}

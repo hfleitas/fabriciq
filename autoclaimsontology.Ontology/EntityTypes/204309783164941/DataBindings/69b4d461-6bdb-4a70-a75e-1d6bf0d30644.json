@@ -1,0 +1,24 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "69b4d461-6bdb-4a70-a75e-1d6bf0d30644",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "Claim_Type_ID",
+        "targetPropertyId": "5502932126105968577"
+      },
+      {
+        "sourceColumnName": "Claim_Type_Name",
+        "targetPropertyId": "5502932147775823772"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "1a46c00a-7407-876c-4c03-1291dab98636",
+      "sourceTableName": "claimtype_dim",
+      "sourceSchema": null
+    }
+  }
+}

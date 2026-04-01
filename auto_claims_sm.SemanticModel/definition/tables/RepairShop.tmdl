@@ -1,0 +1,95 @@
+/// Dimension table containing auto repair shop information. Each row represents a unique repair facility with attributes including shop name, network affiliation type, contact details, geographic location, average repair duration, and area of specialty.
+table RepairShop
+	lineageTag: 15591d90-49e0-45ce-bba3-b312b940214d
+	sourceLineageTag: [dbo].[repair_shop_dim]
+
+	/// Unique identifier for each auto repair shop. Primary key of the repair shop dimension table.
+	column RepairShopID
+		dataType: int64
+		formatString: 0
+		lineageTag: 1719ce47-3140-44c1-9e6d-05a24a0d0717
+		sourceLineageTag: Repair_Shop_ID
+		summarizeBy: none
+		sourceColumn: Repair_Shop_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// The business name of the auto repair facility.
+	column ShopName
+		dataType: string
+		lineageTag: ead204a5-b617-4a79-bb8f-8e7e8a36cc81
+		sourceLineageTag: Shop_Name
+		summarizeBy: none
+		sourceColumn: Shop_Name
+
+		annotation synonyms = ["shop name", "repair facility", "body shop", "garage name"]
+
+	/// The network affiliation status of the repair shop with the insurance company, such as Preferred or Independent.
+	column NetworkType
+		dataType: string
+		lineageTag: 739a7850-ab8f-4ac0-b07f-d088e9420169
+		sourceLineageTag: Network_Type
+		summarizeBy: none
+		sourceColumn: Network_Type
+
+		annotation synonyms = ["network status", "affiliation", "network affiliation", "preferred status"]
+
+	/// The phone number for contacting the repair shop.
+	column ContactNumber
+		dataType: string
+		lineageTag: b84ce65d-6664-48d0-9371-786ba02d2bff
+		sourceLineageTag: Contact_Number
+		summarizeBy: none
+		sourceColumn: Contact_Number
+
+		annotation synonyms = ["phone", "phone number", "telephone", "contact"]
+
+	/// The city where the repair shop is located.
+	column City
+		dataType: string
+		lineageTag: e4c6cae9-1bed-49f6-a437-c3efae7a9154
+		sourceLineageTag: City
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	/// The two-letter US state abbreviation where the repair shop is located, such as WA, TX, or CA.
+	column State
+		dataType: string
+		lineageTag: db9109c1-b1c8-425e-a4c6-62ea368d9f13
+		sourceLineageTag: State
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	/// The average number of days the repair shop takes to complete vehicle repairs.
+	column AvgRepairDays
+		dataType: int64
+		formatString: 0
+		lineageTag: de26d80c-276d-45b2-b4c5-8735d1937756
+		sourceLineageTag: Avg_Repair_Days
+		summarizeBy: average
+		sourceColumn: Avg_Repair_Days
+
+		annotation synonyms = ["average repair time", "repair duration", "turnaround time", "days to repair"]
+
+	/// The primary area of expertise or service specialization of the repair shop, such as Collision and Paint or Frame Repair.
+	column Specialty
+		dataType: string
+		lineageTag: 992861c3-54b1-415b-9563-5e788ddc06e4
+		sourceLineageTag: Specialty
+		summarizeBy: none
+		sourceColumn: Specialty
+
+		annotation synonyms = ["specialization", "expertise", "service type", "focus area"]
+
+	partition repair_shop_dim = entity
+		mode: directLake
+		source
+			entityName: repair_shop_dim
+			expressionSource: 'DirectLake - autoclaimsdata'
+

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "6aba6137-42e6-4103-9ea9-ea2afe67d111",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "Customer_ID",
+        "targetPropertyId": "5502932201262338040"
+      },
+      {
+        "sourceColumnName": "Customer_Name",
+        "targetPropertyId": "5502932223046393894"
+      },
+      {
+        "sourceColumnName": "Date_of_Birth",
+        "targetPropertyId": "5502932248311545003"
+      },
+      {
+        "sourceColumnName": "Customer_Age",
+        "targetPropertyId": "5502932271123286705"
+      },
+      {
+        "sourceColumnName": "Gender",
+        "targetPropertyId": "5502932295566097190"
+      },
+      {
+        "sourceColumnName": "Address",
+        "targetPropertyId": "5502932914159916616"
+      },
+      {
+        "sourceColumnName": "City",
+        "targetPropertyId": "5502932944504009165"
+      },
+      {
+        "sourceColumnName": "State",
+        "targetPropertyId": "5502932968281381830"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "1a46c00a-7407-876c-4c03-1291dab98636",
+      "sourceTableName": "customer_dim",
+      "sourceSchema": null
+    }
+  }
+}

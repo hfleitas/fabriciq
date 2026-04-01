@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataAgent",
+    "displayName": "autocliam3"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "aeb5b288-849e-9351-486d-c9c58aa2301b"
+  }
+}

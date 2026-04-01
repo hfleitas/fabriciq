@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataAgent",
+    "displayName": "GEICO"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "0ccc5046-8719-8cd6-4c09-33f1111c43c8"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "62d0e053-f607-452f-b1cb-c13952238de9",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "Policy_ID",
+        "targetPropertyId": "5502933229709516404"
+      },
+      {
+        "sourceColumnName": "Policy_Number",
+        "targetPropertyId": "5502933248256678836"
+      },
+      {
+        "sourceColumnName": "Policy_Type",
+        "targetPropertyId": "5502933273746680482"
+      },
+      {
+        "sourceColumnName": "Policy_Start_Date",
+        "targetPropertyId": "5502933298969635766"
+      },
+      {
+        "sourceColumnName": "Policy_End_Date",
+        "targetPropertyId": "5502933319910441843"
+      },
+      {
+        "sourceColumnName": "Coverage_Limit",
+        "targetPropertyId": "5502933340227622049"
+      },
+      {
+        "sourceColumnName": "Customer_ID",
+        "targetPropertyId": "5502933365926496710"
+      },
+      {
+        "sourceColumnName": "Vehicle_ID",
+        "targetPropertyId": "5502933386406148724"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "1a46c00a-7407-876c-4c03-1291dab98636",
+      "sourceTableName": "policy_dim",
+      "sourceSchema": null
+    }
+  }
+}

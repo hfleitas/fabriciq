@@ -1,0 +1,44 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "380bb14d-b455-4739-a7bb-a4b4f0b3b6d9",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "Vehicle_ID",
+        "targetPropertyId": "5502931717429066971"
+      },
+      {
+        "sourceColumnName": "Vehicle_VIN",
+        "targetPropertyId": "5502931773545104007"
+      },
+      {
+        "sourceColumnName": "Make",
+        "targetPropertyId": "5502931801847246231"
+      },
+      {
+        "sourceColumnName": "Model",
+        "targetPropertyId": "5502931829916693974"
+      },
+      {
+        "sourceColumnName": "Year",
+        "targetPropertyId": "5502931851209817191"
+      },
+      {
+        "sourceColumnName": "Vehicle_Type",
+        "targetPropertyId": "5502931875580666969"
+      },
+      {
+        "sourceColumnName": "Value",
+        "targetPropertyId": "5502931898309616778"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "1a46c00a-7407-876c-4c03-1291dab98636",
+      "sourceTableName": "vehicle_dim",
+      "sourceSchema": null
+    }
+  }
+}

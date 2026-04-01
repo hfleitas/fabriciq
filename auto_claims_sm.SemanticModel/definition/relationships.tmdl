@@ -1,0 +1,30 @@
+relationship Claims_AssignedTo_Adjuster
+	relyOnReferentialIntegrity
+	fromColumn: Claims.AdjusterID
+	toColumn: Adjuster.AdjusterID
+
+relationship Claims_ClassifiedAs_ClaimType
+	relyOnReferentialIntegrity
+	fromColumn: Claims.ClaimTypeID
+	toColumn: ClaimType.ClaimTypeID
+
+relationship Claims_FiledBy_Customer
+	relyOnReferentialIntegrity
+	fromColumn: Claims.CustomerID
+	toColumn: Customer.CustomerID
+
+relationship Claims_CoveredBy_Policy
+	relyOnReferentialIntegrity
+	fromColumn: Claims.PolicyID
+	toColumn: Policy.PolicyID
+
+relationship Claims_RepairedAt_RepairShop
+	relyOnReferentialIntegrity
+	fromColumn: Claims.RepairShopID
+	toColumn: RepairShop.RepairShopID
+
+relationship Claims_Involves_Vehicle
+	relyOnReferentialIntegrity
+	fromColumn: Claims.VehicleID
+	toColumn: Vehicle.VehicleID
+

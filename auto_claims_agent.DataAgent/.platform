@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataAgent",
+    "displayName": "autoclaim_DA - Sematic Model and Ontology"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f3587a61-644a-8828-403b-63180e389308"
+  }
+}

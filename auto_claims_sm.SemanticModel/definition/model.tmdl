@@ -1,0 +1,23 @@
+/// Auto insurance claims analysis semantic model. Represents the complete lifecycle of automobile insurance claims through a star schema with a central claims fact table linked to dimension tables for policyholders, vehicles, insurance policies, claims adjusters, repair shops, and claim type classifications. Designed for analytical reporting and ontology generation to support natural language querying of claims data.
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DirectLake - autoclaimsdata"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit","MCP-PBIModeling"]
+
+ref table Vehicle
+ref table ClaimType
+ref table Customer
+ref table RepairShop
+ref table Policy
+ref table Claims
+ref table Adjuster
+

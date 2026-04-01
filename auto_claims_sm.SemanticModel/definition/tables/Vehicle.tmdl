@@ -1,0 +1,84 @@
+/// Dimension table containing details about insured vehicles. Each row represents a unique vehicle with attributes including make, model, year, body type classification, and estimated market value.
+table Vehicle
+	lineageTag: 6e25d2c1-40bd-47c2-a964-b416401b7c1e
+	sourceLineageTag: [dbo].[vehicle_dim]
+
+	/// Unique identifier for each insured vehicle. Primary key of the vehicle dimension table.
+	column VehicleID
+		dataType: int64
+		formatString: 0
+		lineageTag: 222e781e-d6c1-46b7-bc0e-89503ae1c1e7
+		sourceLineageTag: Vehicle_ID
+		summarizeBy: none
+		sourceColumn: Vehicle_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Vehicle Identification Number (VIN), a unique 17-character alphanumeric code assigned to every motor vehicle at manufacture.
+	column VIN
+		dataType: string
+		lineageTag: ab1860b5-ec58-4526-b692-dea718d22bf2
+		sourceLineageTag: Vehicle_VIN
+		summarizeBy: none
+		sourceColumn: Vehicle_VIN
+
+		annotation synonyms = ["VIN", "VIN number", "vehicle identification"]
+
+	/// The manufacturer or brand of the vehicle, such as Toyota, Honda, or Ford.
+	column Make
+		dataType: string
+		lineageTag: 5e7080d6-ffa0-498f-8328-befe43540526
+		sourceLineageTag: Make
+		summarizeBy: none
+		sourceColumn: Make
+
+		annotation synonyms = ["manufacturer", "brand", "car make", "automaker"]
+
+	/// The specific model name of the vehicle, such as Camry, CR-V, or F-150.
+	column Model
+		dataType: string
+		lineageTag: 8a9c3a00-b318-45c9-b9d1-84d8d1129cd6
+		sourceLineageTag: Model
+		summarizeBy: none
+		sourceColumn: Model
+
+		annotation synonyms = ["car model", "vehicle model"]
+
+	/// The model year of the vehicle, indicating the year of manufacture or release.
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: e1f762a7-afca-4baf-9b02-927024bd024b
+		sourceLineageTag: Year
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation synonyms = ["model year", "manufacture year", "car year"]
+
+	/// The body style classification of the vehicle, such as Sedan, SUV, Truck, or Coupe.
+	column VehicleType
+		dataType: string
+		lineageTag: 5fb50dfa-f454-4253-970d-0e613c2e06b3
+		sourceLineageTag: Vehicle_Type
+		summarizeBy: none
+		sourceColumn: Vehicle_Type
+
+		annotation synonyms = ["body type", "vehicle class", "car type", "body style"]
+
+	/// The estimated current market value of the vehicle in US dollars.
+	column Value
+		dataType: int64
+		formatString: $#,##0
+		lineageTag: 0ec3efbf-b91a-43f5-ac92-4aeb5e175df1
+		sourceLineageTag: Value
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation synonyms = ["vehicle value", "car value", "market value", "estimated value"]
+
+	partition vehicle_dim = entity
+		mode: directLake
+		source
+			entityName: vehicle_dim
+			expressionSource: 'DirectLake - autoclaimsdata'
+

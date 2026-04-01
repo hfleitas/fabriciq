@@ -1,0 +1,146 @@
+/// Central fact table containing individual auto insurance claim records. Each row represents a single claim filed by a policyholder, capturing the claim amount, status, filing and closure dates, and references to the associated policy, customer, vehicle, adjuster, and repair shop.
+table Claims
+	lineageTag: 83df62db-50c0-4093-a7fd-b3ffd2ce0d82
+	sourceLineageTag: [dbo].[claims_fact]
+
+	/// Count of insurance claims where the claim amount exceeds $30,000. Used to identify and track high-value claims that may require additional review, specialized handling, or management escalation.
+	measure 'Count of high value claims' =
+			
+			CALCULATE(
+			    COUNTROWS( Claims ),
+			    Claims[ClaimAmount] > 30000
+			)
+		formatString: 0
+		lineageTag: 751ce590-7151-416b-a15a-49c51b7d658c
+
+		changedProperty = Name
+
+	/// Unique identifier for each insurance claim. Primary key of the claims fact table.
+	column ClaimID
+		dataType: int64
+		formatString: 0
+		lineageTag: d9719ea4-683e-4d66-a65a-065c80974d48
+		sourceLineageTag: Claim_ID
+		summarizeBy: none
+		sourceColumn: Claim_ID
+
+		annotation synonyms = ["claim id", "claim number", "claim identifier"]
+
+	/// Foreign key referencing the insurance policy associated with this claim. Links to the policy dimension table.
+	column PolicyID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 14a9f304-8b90-4b3e-9e22-488eeb5c31b6
+		sourceLineageTag: Policy_ID
+		summarizeBy: none
+		sourceColumn: Policy_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Foreign key referencing the policyholder who filed this claim. Links to the customer dimension table.
+	column CustomerID
+		dataType: string
+		isHidden
+		lineageTag: 034e964c-27a6-4c20-80fb-b21756d246ad
+		sourceLineageTag: Customer_ID
+		summarizeBy: none
+		sourceColumn: Customer_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Foreign key referencing the vehicle involved in this claim. Links to the vehicle dimension table.
+	column VehicleID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6d4dfc2b-8ad7-4c4d-ab4c-706161436965
+		sourceLineageTag: Vehicle_ID
+		summarizeBy: none
+		sourceColumn: Vehicle_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Foreign key referencing the claims adjuster assigned to evaluate and process this claim. Links to the adjuster dimension table.
+	column AdjusterID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 858cdd0b-6ca4-4e3c-817b-88a8d2d2151e
+		sourceLineageTag: Adjuster_ID
+		summarizeBy: none
+		sourceColumn: Adjuster_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Foreign key referencing the auto repair facility handling repairs for this claim. Links to the repair shop dimension table.
+	column RepairShopID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 99e4f29a-300d-4daf-ac3f-3136aebcc839
+		sourceLineageTag: Repair_Shop_ID
+		summarizeBy: none
+		sourceColumn: Repair_Shop_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// The date when the insurance claim was filed or reported by the policyholder.
+	column ClaimDate
+		dataType: string
+		lineageTag: cf872226-7d5c-4615-aa6b-7a93625d16c3
+		sourceLineageTag: Claim_Date
+		summarizeBy: none
+		sourceColumn: Claim_Date
+
+		annotation synonyms = ["filed date", "report date", "date filed", "claim filing date"]
+
+	/// The date when the insurance claim was resolved, settled, and officially closed.
+	column ClaimCloseDate
+		dataType: string
+		lineageTag: 8323b5c3-57d5-4bbe-9be4-a3332818fc4a
+		sourceLineageTag: Claim_CloseDate
+		summarizeBy: none
+		sourceColumn: Claim_CloseDate
+
+		annotation synonyms = ["close date", "resolution date", "settlement date", "date closed"]
+
+	/// The monetary value of the insurance claim in US dollars, representing the total amount claimed by the policyholder.
+	column ClaimAmount
+		dataType: int64
+		formatString: $#,##0
+		lineageTag: ddad58a5-3601-4870-817a-c1d154bc8519
+		sourceLineageTag: Claim_Amount
+		summarizeBy: sum
+		sourceColumn: Claim_Amount
+
+		annotation synonyms = ["claim value", "amount claimed", "claim cost", "payout amount", "claim dollar amount"]
+
+	/// The current processing status of the claim. Possible values include Open, Closed, or Under Review.
+	column ClaimStatus
+		dataType: string
+		lineageTag: 922134c5-ab59-4c11-abf5-2226972785df
+		sourceLineageTag: Claim_Status
+		summarizeBy: none
+		sourceColumn: Claim_Status
+
+		annotation synonyms = ["status", "claim state", "processing status"]
+
+	/// Foreign key referencing the type or category of the insurance claim. Links to the claim type dimension table.
+	column ClaimTypeID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ca210de5-3b61-4200-aaa7-0dbc3ad722ec
+		sourceLineageTag: Claim_Type
+		summarizeBy: none
+		sourceColumn: Claim_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition claims_fact = entity
+		mode: directLake
+		source
+			entityName: claims_fact
+			expressionSource: 'DirectLake - autoclaimsdata'
+

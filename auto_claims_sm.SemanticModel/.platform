@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "auto_claims_sm"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5625563a-1074-9dfa-4865-ba334b42bbb7"
+  }
+}

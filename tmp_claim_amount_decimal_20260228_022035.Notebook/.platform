@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "tmp_claim_amount_decimal_20260228_022035",
+    "description": "Temporary notebook to cast Claim_Amount to decimal(18,2)"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7b89ea67-ff56-9c47-4bd2-68cc5beb6f7d"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/overviews/1.0.0/schema.json",
+  "widgets": [
+    {
+      "type": "graph",
+      "id": "e72952bb-9d70-4fab-ab30-30601b102995",
+      "title": null
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502933452404530136",
+      "id": "e9547d63-69c9-4614-97e0-b7f4557163bf",
+      "title": "Policy_ID"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502933476415812963",
+      "id": "f565dd4f-19dc-482a-b4a8-a783f5f35332",
+      "title": "Customer_ID"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502933498255274177",
+      "id": "f4be77a8-5740-4c7d-b756-34fa96c68cd6",
+      "title": "Vehicle_ID"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502933519810743168",
+      "id": "78033a4f-37c4-42d3-ae7a-1f4ec970eec4",
+      "title": "Adjuster_ID"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502933547038612162",
+      "id": "30b5fd15-1424-49df-92fe-6ff9f8bf952f",
+      "title": "Repair_Shop_ID"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502933568783751317",
+      "id": "4c1e7cd8-2860-4436-96d9-6e97dabaee5e",
+      "title": "Claim_Date"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502933612103857924",
+      "id": "98307326-8a5e-4b12-99af-077b58cfae1d",
+      "title": "Claim_Amount"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502933630017862510",
+      "id": "e6577b47-a109-4b67-ad7c-77ae21dad766",
+      "title": "Claim_Status"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502933658501673527",
+      "id": "a60b7375-ec58-4dbd-84ee-fd3b7616c59b",
+      "title": "Claim_Type"
+    }
+  ],
+  "settings": {
+    "type": "fixedTime",
+    "fixedTimeRange": "Last30Minutes",
+    "interval": "OneHour",
+    "aggregation": "Average"
+  }
+}

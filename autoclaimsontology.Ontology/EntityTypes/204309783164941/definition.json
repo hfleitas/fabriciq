@@ -1,0 +1,30 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/entityType/1.0.0/schema.json",
+  "id": "204309783164941",
+  "namespace": "usertypes",
+  "baseEntityTypeId": null,
+  "name": "Claim_type",
+  "entityIdParts": [
+    "5502932126105968577"
+  ],
+  "displayNamePropertyId": "5502932147775823772",
+  "namespaceType": "Imported",
+  "visibility": "Visible",
+  "properties": [
+    {
+      "id": "5502932126105968577",
+      "name": "Claim_Type_ID",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "BigInt"
+    },
+    {
+      "id": "5502932147775823772",
+      "name": "Claim_Type_Name",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    }
+  ],
+  "timeseriesProperties": []
+}

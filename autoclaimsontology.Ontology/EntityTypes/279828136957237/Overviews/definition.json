@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/overviews/1.0.0/schema.json",
+  "widgets": [
+    {
+      "type": "graph",
+      "id": "b07ca468-ec75-4d36-be04-c813d8427ebd",
+      "title": null
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502933065704361132",
+      "id": "b2425937-4535-4429-94e1-5b35327e40e0",
+      "title": "Network_Type"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502933139099007840",
+      "id": "4a593112-9856-4eaa-8b93-2ea2a0920858",
+      "title": "State"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502933158261445485",
+      "id": "8a081211-f6aa-4e0d-8f46-ba19d697762f",
+      "title": "Avg_Repair_Days"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502933180972614344",
+      "id": "c60fbec8-a942-4ed4-9224-05f1d7bc7fc6",
+      "title": "Specialty"
+    }
+  ],
+  "settings": null
+}

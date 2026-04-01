@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/contextualization/1.0.0/schema.json",
+  "id": "a732fd4e-8a99-4b33-b944-06921bda56c7",
+  "dataBindingTable": {
+    "workspaceId": "00000000-0000-0000-0000-000000000000",
+    "itemId": "1a46c00a-7407-876c-4c03-1291dab98636",
+    "sourceTableName": "claims_fact",
+    "sourceSchema": null,
+    "sourceType": "LakehouseTable"
+  },
+  "sourceKeyRefBindings": [
+    {
+      "sourceColumnName": "Claim_ID",
+      "targetPropertyId": "5502933430493699985"
+    }
+  ],
+  "targetKeyRefBindings": [
+    {
+      "sourceColumnName": "Policy_ID",
+      "targetPropertyId": "5502933229709516404"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/dataAgent/definition/stageConfiguration/1.0.0/schema.json",
+  "aiInstructions": "## Query normalization (must apply)\n\nBefore you run or present any query string:\n\n1. Remove all occurrences of `\\n` and `'\\n'`.\n2. Replace any resulting double-spaces with a single space.\n3. Trim leading/trailing whitespace.\n4. Return the normalized query as one line."
+}

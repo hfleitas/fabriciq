@@ -1,0 +1,32 @@
+/// Dimension table containing claim type classifications. Each row represents a unique category of insurance claim such as Collision, Theft, Comprehensive, or Vandalism.
+table ClaimType
+	lineageTag: 4f14c643-44f2-4c35-b852-62db2906439b
+	sourceLineageTag: [dbo].[claimtype_dim]
+
+	/// Unique identifier for each claim type category. Primary key of the claim type dimension table.
+	column ClaimTypeID
+		dataType: int64
+		formatString: 0
+		lineageTag: 079d8b74-f4e4-4c1c-bf91-35cd340ac082
+		sourceLineageTag: Claim_Type_ID
+		summarizeBy: none
+		sourceColumn: Claim_Type_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// The descriptive name of the claim type category, such as Collision, Theft, Comprehensive, or Vandalism.
+	column ClaimTypeName
+		dataType: string
+		lineageTag: f5838716-f2e0-495b-a3fa-51a5e0f30573
+		sourceLineageTag: Claim_Type_Name
+		summarizeBy: none
+		sourceColumn: Claim_Type_Name
+
+		annotation synonyms = ["claim category", "type of claim", "claim classification"]
+
+	partition claimtype_dim = entity
+		mode: directLake
+		source
+			entityName: claimtype_dim
+			expressionSource: 'DirectLake - autoclaimsdata'
+

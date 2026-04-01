@@ -1,0 +1,22 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/overviews/1.0.0/schema.json",
+  "widgets": [
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502932147775823772",
+      "id": "9f898603-b431-4642-b6d9-c7f26050d646",
+      "title": "Claim_Type_Name"
+    },
+    {
+      "type": "graph",
+      "id": "af61c34d-3241-46df-8097-9bf7bcc50c6e",
+      "title": "Relationship graph"
+    }
+  ],
+  "settings": {
+    "type": "fixedTime",
+    "fixedTimeRange": "Last30Days",
+    "interval": "OneHour",
+    "aggregation": "Average"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "37435628-44e1-4a20-9457-6fd6eb0ef311",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "Repair_Shop_ID",
+        "targetPropertyId": "5502933016113192110"
+      },
+      {
+        "sourceColumnName": "Shop_Name",
+        "targetPropertyId": "5502933037462103184"
+      },
+      {
+        "sourceColumnName": "Network_Type",
+        "targetPropertyId": "5502933065704361132"
+      },
+      {
+        "sourceColumnName": "Contact_Number",
+        "targetPropertyId": "5502933084573906160"
+      },
+      {
+        "sourceColumnName": "City",
+        "targetPropertyId": "5502933113947253761"
+      },
+      {
+        "sourceColumnName": "State",
+        "targetPropertyId": "5502933139099007840"
+      },
+      {
+        "sourceColumnName": "Avg_Repair_Days",
+        "targetPropertyId": "5502933158261445485"
+      },
+      {
+        "sourceColumnName": "Specialty",
+        "targetPropertyId": "5502933180972614344"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "1a46c00a-7407-876c-4c03-1291dab98636",
+      "sourceTableName": "repair_shop_dim",
+      "sourceSchema": null
+    }
+  }
+}

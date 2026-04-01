@@ -1,0 +1,41 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/overviews/1.0.0/schema.json",
+  "widgets": [
+    {
+      "type": "graph",
+      "id": "df8aac1c-31b2-4b1d-9f90-41fb41abaa97",
+      "title": null
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502932271123286705",
+      "id": "e0a34360-56d5-4a8d-81bf-19a440932119",
+      "title": "Customer_Age"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502932295566097190",
+      "id": "50c28422-8cba-46ea-a31e-8b0099dfb9dc",
+      "title": "Gender"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502932944504009165",
+      "id": "05e4f361-447e-4432-b789-3594633a6fee",
+      "title": "City"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502932968281381830",
+      "id": "6f83cdcb-40d5-454e-b257-1ca783110166",
+      "title": "State"
+    },
+    {
+      "type": "barChart",
+      "yAxisPropertyId": "5502932223046393894",
+      "id": "7b87a809-a3d8-4a28-81f3-189513372e6e",
+      "title": "name"
+    }
+  ],
+  "settings": null
+}

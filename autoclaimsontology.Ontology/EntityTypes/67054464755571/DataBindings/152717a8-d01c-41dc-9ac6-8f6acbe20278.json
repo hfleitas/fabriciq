@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "152717a8-d01c-41dc-9ac6-8f6acbe20278",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "Claim_ID",
+        "targetPropertyId": "5502933430493699985"
+      },
+      {
+        "sourceColumnName": "Policy_ID",
+        "targetPropertyId": "5502933452404530136"
+      },
+      {
+        "sourceColumnName": "Customer_ID",
+        "targetPropertyId": "5502933476415812963"
+      },
+      {
+        "sourceColumnName": "Vehicle_ID",
+        "targetPropertyId": "5502933498255274177"
+      },
+      {
+        "sourceColumnName": "Adjuster_ID",
+        "targetPropertyId": "5502933519810743168"
+      },
+      {
+        "sourceColumnName": "Repair_Shop_ID",
+        "targetPropertyId": "5502933547038612162"
+      },
+      {
+        "sourceColumnName": "Claim_Date",
+        "targetPropertyId": "5502933568783751317"
+      },
+      {
+        "sourceColumnName": "Claim_CloseDate",
+        "targetPropertyId": "5502933590268941313"
+      },
+      {
+        "sourceColumnName": "Claim_Amount",
+        "targetPropertyId": "5502933612103857924"
+      },
+      {
+        "sourceColumnName": "Claim_Status",
+        "targetPropertyId": "5502933630017862510"
+      },
+      {
+        "sourceColumnName": "Claim_Type",
+        "targetPropertyId": "5502933658501673527"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "1a46c00a-7407-876c-4c03-1291dab98636",
+      "sourceTableName": "claims_fact",
+      "sourceSchema": null
+    }
+  }
+}

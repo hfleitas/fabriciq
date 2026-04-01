@@ -1,0 +1,68 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/dataAgent/definition/dataSource/1.0.0/schema.json",
+  "artifactId": "81d80317-f46a-9abc-4fed-a5263139ea7f",
+  "workspaceId": "00000000-0000-0000-0000-000000000000",
+  "dataSourceInstructions": null,
+  "displayName": "autoclaimsontology",
+  "type": "ontology",
+  "userDescription": null,
+  "metadata": {},
+  "elements": [
+    {
+      "id": "vehicle",
+      "is_selected": true,
+      "display_name": "vehicle",
+      "type": "ontology.entity",
+      "description": "Vehicle_ID,Vehicle_VIN,Make,Model,Year,Vehicle_Type,Value",
+      "children": []
+    },
+    {
+      "id": "Claim_type",
+      "is_selected": true,
+      "display_name": "Claim_type",
+      "type": "ontology.entity",
+      "description": "Claim_Type_ID,Claim_Type_Name",
+      "children": []
+    },
+    {
+      "id": "Customer",
+      "is_selected": true,
+      "display_name": "Customer",
+      "type": "ontology.entity",
+      "description": "Customer_ID,Customer_Name,Date_of_Birth,Customer_Age,Gender,Address,City,State",
+      "children": []
+    },
+    {
+      "id": "Repair_Shop",
+      "is_selected": true,
+      "display_name": "Repair_Shop",
+      "type": "ontology.entity",
+      "description": "Repair_Shop_ID,Shop_Name,Network_Type,Contact_Number,City,State,Avg_Repair_Days,Specialty",
+      "children": []
+    },
+    {
+      "id": "Policy",
+      "is_selected": true,
+      "display_name": "Policy",
+      "type": "ontology.entity",
+      "description": "Policy_ID,Policy_Number,Policy_Type,Policy_Start_Date,Policy_End_Date,Coverage_Limit,Customer_ID,Vehicle_ID",
+      "children": []
+    },
+    {
+      "id": "Claims",
+      "is_selected": true,
+      "display_name": "Claims",
+      "type": "ontology.entity",
+      "description": "Claim_ID,Policy_ID,Customer_ID,Vehicle_ID,Adjuster_ID,Repair_Shop_ID,Claim_Date,Claim_CloseDate,Claim_Amount,Claim_Status,Claim_Type",
+      "children": []
+    },
+    {
+      "id": "Adjuster",
+      "is_selected": true,
+      "display_name": "Adjuster",
+      "type": "ontology.entity",
+      "description": "Adjuster_ID,Adjuster_Name,Experience_Years,Region",
+      "children": []
+    }
+  ]
+}

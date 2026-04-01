@@ -1,0 +1,95 @@
+/// Dimension table containing policyholder demographic information. Each row represents a unique insurance customer with attributes including name, date of birth, age, gender, and residential address details.
+table Customer
+	lineageTag: 9780909e-c9bc-4df6-83e8-784b69efb3dd
+	sourceLineageTag: [dbo].[customer_dim]
+
+	/// Unique identifier for each policyholder. Primary key of the customer dimension table.
+	column CustomerID
+		dataType: string
+		lineageTag: 3ef43fc5-7da3-4dc9-a3fe-363c9f5acfd9
+		sourceLineageTag: Customer_ID
+		summarizeBy: none
+		sourceColumn: Customer_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Full name of the insurance policyholder.
+	column CustomerName
+		dataType: string
+		lineageTag: bda537f1-f6d8-4959-8ff2-490f4132fdc2
+		sourceLineageTag: Customer_Name
+		summarizeBy: none
+		sourceColumn: Customer_Name
+
+		annotation synonyms = ["customer name", "policyholder name", "insured name", "client name"]
+
+	/// The date of birth of the policyholder.
+	column DateOfBirth
+		dataType: string
+		lineageTag: 28e66ee6-81fb-4474-b14b-f50329d4eda3
+		sourceLineageTag: Date_of_Birth
+		summarizeBy: none
+		sourceColumn: Date_of_Birth
+
+		annotation synonyms = ["DOB", "birthday", "birth date"]
+
+	/// The current age of the policyholder in years, derived from date of birth.
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: bf29eb0d-8049-4b12-9e0d-32dabba0d8f1
+		sourceLineageTag: Customer_Age
+		summarizeBy: none
+		sourceColumn: Customer_Age
+
+		annotation synonyms = ["age", "policyholder age", "customer age"]
+
+	/// The gender of the policyholder. Possible values include Male or Female.
+	column Gender
+		dataType: string
+		lineageTag: 6b29a2eb-e7e2-4efc-badc-fb487871f596
+		sourceLineageTag: Gender
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation synonyms = ["sex", "customer gender"]
+
+	/// The street address of the policyholder's primary residence.
+	column Address
+		dataType: string
+		lineageTag: f8f69ebd-f2fd-45c6-ace9-ee2c9e839c9a
+		sourceLineageTag: Address
+		dataCategory: Address
+		summarizeBy: none
+		sourceColumn: Address
+
+		annotation synonyms = ["street address", "home address", "residence"]
+
+	/// The city where the policyholder resides.
+	column City
+		dataType: string
+		lineageTag: d44435e6-b1e9-4c0c-870a-91f7631799f1
+		sourceLineageTag: City
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	/// The two-letter US state abbreviation where the policyholder resides, such as WA, TX, or CA.
+	column State
+		dataType: string
+		lineageTag: de03baea-917d-44e6-b47d-fa1e8abd13fb
+		sourceLineageTag: State
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	partition customer_dim = entity
+		mode: directLake
+		source
+			entityName: customer_dim
+			expressionSource: 'DirectLake - autoclaimsdata'
+

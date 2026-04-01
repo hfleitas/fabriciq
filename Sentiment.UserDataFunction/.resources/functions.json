@@ -1,0 +1,42 @@
+{
+  "runtime": "PYTHON",
+  "functionsMetadata": [
+    {
+      "name": "analyze_transcript_sentiment",
+      "scriptFile": "function_app.py",
+      "bindings": [
+        {
+          "name": "req",
+          "type": "HttpTrigger",
+          "direction": "In",
+          "authLevel": "Anonymous",
+          "methods": [
+            "POST"
+          ],
+          "route": ""
+        },
+        {
+          "name": "lakehouse",
+          "type": "FabricItem",
+          "direction": "In",
+          "alias": "LH1",
+          "subType": "FabricLakehouseClient",
+          "itemType": null,
+          "audienceType": null
+        }
+      ],
+      "fabricProperties": {
+        "fabricMetadataSchemaVersion": "1.1.0",
+        "fabricFunctionReturnType": "list",
+        "fabricFunctionParameters": [
+          {
+            "name": "fileName",
+            "dataType": "str",
+            "hasDefaultValue": false,
+            "defaultValue": null
+          }
+        ]
+      }
+    }
+  ]
+}

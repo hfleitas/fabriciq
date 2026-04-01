@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "UserDataFunction",
+    "displayName": "Sentiment"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "26389a1a-af85-81c5-4976-e05c15693c85"
+  }
+}

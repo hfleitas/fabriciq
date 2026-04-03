@@ -1,5 +1,4 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/version/1.0.0/schema.json",
-  "compatible": "4.0",
-  "created": "4.0"
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/versionMetadata/1.0.0/schema.json",
+  "version": "4.0.0"
 }

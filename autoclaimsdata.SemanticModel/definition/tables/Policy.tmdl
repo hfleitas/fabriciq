@@ -1,0 +1,87 @@
+table Policy
+	lineageTag: 700cd53d-15b3-447e-8f51-ec4b70a727c3
+	sourceLineageTag: [dbo].[policy_dim]
+
+	column Policy_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: ba4673c1-053b-44c0-ae8f-102afc4bd6aa
+		sourceLineageTag: Policy_ID
+		summarizeBy: none
+		sourceColumn: Policy_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Policy_Number
+		dataType: string
+		lineageTag: de5dde69-b85e-4288-9711-b0d2237a7790
+		sourceLineageTag: Policy_Number
+		summarizeBy: none
+		sourceColumn: Policy_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Policy_Type
+		dataType: string
+		lineageTag: 96f65fd0-e7af-43fc-9354-95f76ec551d4
+		sourceLineageTag: Policy_Type
+		summarizeBy: none
+		sourceColumn: Policy_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Policy_Start_Date
+		dataType: string
+		lineageTag: 3676b568-6a88-4c05-93f9-64cba6daa3b1
+		sourceLineageTag: Policy_Start_Date
+		summarizeBy: none
+		sourceColumn: Policy_Start_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Policy_End_Date
+		dataType: string
+		lineageTag: 7928e60a-2477-491f-9468-58afb5ce4e84
+		sourceLineageTag: Policy_End_Date
+		summarizeBy: none
+		sourceColumn: Policy_End_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Coverage_Limit
+		dataType: int64
+		formatString: 0
+		lineageTag: 1617c580-7bd3-47bb-b458-08aeb14490d5
+		sourceLineageTag: Coverage_Limit
+		summarizeBy: none
+		sourceColumn: Coverage_Limit
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_ID
+		dataType: string
+		lineageTag: b3f72874-3c8c-424f-a96f-57c37b04da84
+		sourceLineageTag: Customer_ID
+		summarizeBy: none
+		sourceColumn: Customer_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vehicle_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 71bf98ef-2dbd-4226-a930-1bc0e96ddf99
+		sourceLineageTag: Vehicle_ID
+		summarizeBy: none
+		sourceColumn: Vehicle_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Policy = entity
+		mode: directLake
+		source
+			entityName: policy_dim
+			expressionSource: 'DirectLake - autoclaimsdata'
+
+	changedProperty = Name
+

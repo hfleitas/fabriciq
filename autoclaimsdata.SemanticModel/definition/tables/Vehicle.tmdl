@@ -1,0 +1,78 @@
+table Vehicle
+	lineageTag: ac549bf0-5d94-4afe-b5b9-812333e66653
+	sourceLineageTag: [dbo].[vehicle_dim]
+
+	column Vehicle_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 227a6e55-a197-4829-b580-4511f3b1008a
+		sourceLineageTag: Vehicle_ID
+		summarizeBy: none
+		sourceColumn: Vehicle_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vehicle_VIN
+		dataType: string
+		lineageTag: 5fc02ea9-36f5-4799-8320-fec916615938
+		sourceLineageTag: Vehicle_VIN
+		summarizeBy: none
+		sourceColumn: Vehicle_VIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Make
+		dataType: string
+		lineageTag: d155806f-4fed-4a9c-a904-dc1f4c335ac6
+		sourceLineageTag: Make
+		summarizeBy: none
+		sourceColumn: Make
+
+		annotation SummarizationSetBy = Automatic
+
+	column Model
+		dataType: string
+		lineageTag: 17acc6e0-c0c8-4f4c-8979-96fe4567eddd
+		sourceLineageTag: Model
+		summarizeBy: none
+		sourceColumn: Model
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: e7864e09-6ffa-4789-a189-9f0503711099
+		sourceLineageTag: Year
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vehicle_Type
+		dataType: string
+		lineageTag: 146b67ab-7779-4ae7-bfb7-fff5770c1515
+		sourceLineageTag: Vehicle_Type
+		summarizeBy: none
+		sourceColumn: Vehicle_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: int64
+		formatString: 0
+		lineageTag: dc2e14b6-5013-4fcf-a2bc-04b13c0231ff
+		sourceLineageTag: Value
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Vehicle = entity
+		mode: directLake
+		source
+			entityName: vehicle_dim
+			expressionSource: 'DirectLake - autoclaimsdata'
+
+	changedProperty = Name
+

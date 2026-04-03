@@ -1,0 +1,85 @@
+table Customer
+	lineageTag: dcbb6eca-b75a-4248-a48a-c370272aec09
+	sourceLineageTag: [dbo].[customer_dim]
+
+	column Customer_ID
+		dataType: string
+		lineageTag: d2102057-5660-44b6-a4af-44b453e90260
+		sourceLineageTag: Customer_ID
+		summarizeBy: none
+		sourceColumn: Customer_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Name
+		dataType: string
+		lineageTag: 5ebc111a-623f-4295-baf5-6e7abc2ac427
+		sourceLineageTag: Customer_Name
+		summarizeBy: none
+		sourceColumn: Customer_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_of_Birth
+		dataType: string
+		lineageTag: 9bc9185c-f1a2-4cc3-b5e2-954580924f75
+		sourceLineageTag: Date_of_Birth
+		summarizeBy: none
+		sourceColumn: Date_of_Birth
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 5b306570-3737-4874-9ba9-f6bb80548b21
+		sourceLineageTag: Customer_Age
+		summarizeBy: none
+		sourceColumn: Customer_Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 15bb1691-e4ef-43bc-bb75-a54bbcfd2d4f
+		sourceLineageTag: Gender
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Address
+		dataType: string
+		lineageTag: e5393616-d606-4ff5-a963-29ea90b3aeba
+		sourceLineageTag: Address
+		summarizeBy: none
+		sourceColumn: Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: d6146171-c264-43fd-af80-1ad4c3b572d8
+		sourceLineageTag: City
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 586849f0-7564-45bf-bcf9-97d546ee2420
+		sourceLineageTag: State
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customer = entity
+		mode: directLake
+		source
+			entityName: customer_dim
+			expressionSource: 'DirectLake - autoclaimsdata'
+
+	changedProperty = Name
+

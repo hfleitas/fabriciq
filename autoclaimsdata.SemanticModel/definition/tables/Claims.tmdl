@@ -1,0 +1,118 @@
+table Claims
+	lineageTag: 7625eefa-5584-4ce8-b50b-262c9773838e
+	sourceLineageTag: [dbo].[claims_fact]
+
+	column Claim_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e56f0c4-284b-41fb-bd0d-92c4ce0bc7dd
+		sourceLineageTag: Claim_ID
+		summarizeBy: count
+		sourceColumn: Claim_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Policy_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 514c5ec7-64a1-4e4f-8828-e27a31d94c2c
+		sourceLineageTag: Policy_ID
+		summarizeBy: none
+		sourceColumn: Policy_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_ID
+		dataType: string
+		lineageTag: 0afbcc4c-0850-4192-a08b-e2e43861806e
+		sourceLineageTag: Customer_ID
+		summarizeBy: none
+		sourceColumn: Customer_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vehicle_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: f6b7ba28-d7c1-4e22-8d2b-3f0201b925df
+		sourceLineageTag: Vehicle_ID
+		summarizeBy: none
+		sourceColumn: Vehicle_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Adjuster_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: eaef2e96-7707-41f0-9dda-155628d90baf
+		sourceLineageTag: Adjuster_ID
+		summarizeBy: none
+		sourceColumn: Adjuster_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Repair_Shop_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: e81a3797-a9f9-42db-ba13-f5dc68ace854
+		sourceLineageTag: Repair_Shop_ID
+		summarizeBy: none
+		sourceColumn: Repair_Shop_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Claim_Date
+		dataType: string
+		lineageTag: 62faa0c2-b990-4946-871e-5f552e345da4
+		sourceLineageTag: Claim_Date
+		summarizeBy: none
+		sourceColumn: Claim_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Claim_CloseDate
+		dataType: string
+		lineageTag: 162e61de-12a5-44bd-9f64-daa6681738fa
+		sourceLineageTag: Claim_CloseDate
+		summarizeBy: none
+		sourceColumn: Claim_CloseDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Claim_Amount
+		dataType: int64
+		formatString: 0
+		lineageTag: fad99334-ec7e-4033-803d-cb50e8fec0e6
+		sourceLineageTag: Claim_Amount
+		summarizeBy: sum
+		sourceColumn: Claim_Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column Claim_Status
+		dataType: string
+		lineageTag: b1910928-d1e0-470d-9b6d-21bbdb951f96
+		sourceLineageTag: Claim_Status
+		summarizeBy: none
+		sourceColumn: Claim_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Claim_Type
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d13f89f-eb06-4daf-9300-acd5e44724e7
+		sourceLineageTag: Claim_Type
+		summarizeBy: none
+		sourceColumn: Claim_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Claims = entity
+		mode: directLake
+		source
+			entityName: claims_fact
+			expressionSource: 'DirectLake - autoclaimsdata'
+
+	changedProperty = Name
+

@@ -1,0 +1,50 @@
+table Adjuster
+	lineageTag: d04af5f1-be53-4c04-9fbc-ba9f2d292c33
+	sourceLineageTag: [dbo].[adjuster_dim]
+
+	column Adjuster_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 235e4628-2792-4fc5-aa57-fe6b6742eac2
+		sourceLineageTag: Adjuster_ID
+		summarizeBy: none
+		sourceColumn: Adjuster_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Adjuster_Name
+		dataType: string
+		lineageTag: 2e2502f9-4c18-4655-bd37-91cabe35518f
+		sourceLineageTag: Adjuster_Name
+		summarizeBy: none
+		sourceColumn: Adjuster_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Experience_Years
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ee17d58-7007-4c64-af57-d0869f205421
+		sourceLineageTag: Experience_Years
+		summarizeBy: none
+		sourceColumn: Experience_Years
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: ef1ee86b-54a0-4a15-b6a3-7ef76db53fcc
+		sourceLineageTag: Region
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Adjuster = entity
+		mode: directLake
+		source
+			entityName: adjuster_dim
+			expressionSource: 'DirectLake - autoclaimsdata'
+
+	changedProperty = Name
+

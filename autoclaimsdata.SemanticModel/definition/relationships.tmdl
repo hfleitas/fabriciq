@@ -1,0 +1,24 @@
+relationship 37eb9b2a-5e8a-c033-194e-01e449540820
+	fromColumn: Claims.Adjuster_ID
+	toColumn: Adjuster.Adjuster_ID
+
+relationship ce42b905-2822-06bd-5ed1-74b3fdf63186
+	fromColumn: Claims.Repair_Shop_ID
+	toColumn: RepairShop.Repair_Shop_ID
+
+relationship e6fc77cf-f7c1-93cf-e6be-0ce0558e118e
+	fromColumn: Claims.Claim_Type
+	toColumn: ClaimType.Claim_Type_ID
+
+relationship f56a6fee-87d5-cab3-7e32-91e89106c278
+	fromColumn: Claims.Customer_ID
+	toColumn: Customer.Customer_ID
+
+relationship d5848062-ba71-f1c2-1f1f-a91b43af15e0
+	fromColumn: Claims.Policy_ID
+	toColumn: Policy.Policy_ID
+
+relationship 657c2d38-b23c-86d0-0ca5-ac9d38f0b369
+	fromColumn: Claims.Vehicle_ID
+	toColumn: Vehicle.Vehicle_ID
+

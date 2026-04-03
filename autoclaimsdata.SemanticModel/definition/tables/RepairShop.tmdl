@@ -1,0 +1,86 @@
+table RepairShop
+	lineageTag: a48f0ae0-0061-4f64-b564-b1f3a46e24dd
+	sourceLineageTag: [dbo].[repair_shop_dim]
+
+	column Repair_Shop_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 90adc45c-61f1-4c37-9b57-b008e3563405
+		sourceLineageTag: Repair_Shop_ID
+		summarizeBy: none
+		sourceColumn: Repair_Shop_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shop_Name
+		dataType: string
+		lineageTag: 5d715333-862d-4e2a-ac5b-623e17ac3e2c
+		sourceLineageTag: Shop_Name
+		summarizeBy: none
+		sourceColumn: Shop_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Network_Type
+		dataType: string
+		lineageTag: 86a5399c-2f15-4e58-a636-ee59993d9aff
+		sourceLineageTag: Network_Type
+		summarizeBy: none
+		sourceColumn: Network_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contact_Number
+		dataType: string
+		lineageTag: 95339b80-273f-4713-919e-1299074d0399
+		sourceLineageTag: Contact_Number
+		summarizeBy: none
+		sourceColumn: Contact_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 5bffbadd-18c8-4cde-91d5-45b5af6784f6
+		sourceLineageTag: City
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: f8fb8960-4a15-413f-b5a1-0c723e85d7b3
+		sourceLineageTag: State
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Avg_Repair_Days
+		dataType: int64
+		formatString: 0
+		lineageTag: ef7dbc08-9cd9-4503-bcf5-34a543613a53
+		sourceLineageTag: Avg_Repair_Days
+		summarizeBy: none
+		sourceColumn: Avg_Repair_Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column Specialty
+		dataType: string
+		lineageTag: 9587e4fe-813b-49a9-8e81-25fadbb597a6
+		sourceLineageTag: Specialty
+		summarizeBy: none
+		sourceColumn: Specialty
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RepairShop = entity
+		mode: directLake
+		source
+			entityName: repair_shop_dim
+			expressionSource: 'DirectLake - autoclaimsdata'
+
+	changedProperty = Name
+

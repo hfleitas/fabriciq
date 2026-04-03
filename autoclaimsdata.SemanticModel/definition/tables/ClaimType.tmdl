@@ -1,0 +1,31 @@
+table ClaimType
+	lineageTag: e31d2432-5949-4ce7-bb8b-5b895ab3723e
+	sourceLineageTag: [dbo].[claimtype_dim]
+
+	column Claim_Type_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 395cdf17-fbac-44c7-9dc3-3e4d5172c7f9
+		sourceLineageTag: Claim_Type_ID
+		summarizeBy: none
+		sourceColumn: Claim_Type_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Claim_Type_Name
+		dataType: string
+		lineageTag: 7f85afe5-1366-4156-b025-0a49fa282814
+		sourceLineageTag: Claim_Type_Name
+		summarizeBy: none
+		sourceColumn: Claim_Type_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ClaimType = entity
+		mode: directLake
+		source
+			entityName: claimtype_dim
+			expressionSource: 'DirectLake - autoclaimsdata'
+
+	changedProperty = Name
+

@@ -14,10 +14,6 @@
       "name": "analyze_transcript_sentiment",
       "description": "",
       "isPublicEndpointEnabled": true
-    },
-    {
-      "name": "get_udf_oai_spec_json",
-      "isPublicEndpointEnabled": true
     }
   ],
   "libraries": {

@@ -7,22 +7,22 @@
         "clusterUri": "https://trd-cff114afmpqwdjz7ux.z0.kusto.fabric.microsoft.com",
         "type": "Fabric",
         "databaseItemId": "63215130-fa35-4f6c-9f14-dfd263113731",
-        "databaseItemName": "63215130-fa35-4f6c-9f14-dfd263113731"
+        "databaseItemName": "EH1"
       },
       {
         "id": "b9626462-0115-491c-a8c4-3241aeb26bb0",
         "clusterUri": "https://trd-3yh68y911w8pmue9mg.z6.kusto.fabric.microsoft.com",
         "type": "Fabric",
         "databaseItemId": "e421203e-50db-478c-a85f-fdd33d5b6775",
-        "databaseItemName": "EH1"
+        "databaseItemName": "e421203e-50db-478c-a85f-fdd33d5b6775"
       }
     ],
     "tabs": [
       {
         "id": "479b3934-f0de-48c4-84f3-c681a3bdc22d",
-        "content": "// step 1 - create demo assets\n.execute database script <| \n.create table Counter_raw (Data:dynamic)\n.show table Counter_raw policy streamingingestion\n.show database policy streamingingestion //if IsEnabled = true, table will inherit database policy.\n.alter table Counter_raw policy streamingingestion enable //not required if already enabled for the db. \n\n// get bcdr1 > eh1 clus uri\nprint uri=current_cluster_endpoint(), db=current_database()\n\n// \"uri\": trd-cff114afmpqwdjz7ux.z0.kusto.fabric.microsoft.com, \"db\": 63215130-fa35-4f6c-9f14-dfd263113731\n\n// run streaming ingestion client (once)\n\nCounter_raw\n| count\n\nCounter_raw\n| where ingestion_time() > ago(1s)\n| take 10 \n\nCounter_raw\n| where ingestion_time() > ago(1m)\n| extend DeviceName = tostring(Data.Device.ComputerName), MachineGuid = tostring(Data.Device.MachineGuid)\n| where isnotempty(MachineGuid)\n\n// run streaming ingestion client (infinite loop)\n\nCounter_raw\n| count //growing\n\n.show database policy caching //infinite is default, well 36500d = 100yrs :)\n\n.alter database EH1 policy caching hot = 30m\n\n.show table Counter_raw policy retention\n\n.alter table Counter_raw policy retention ```{\"SoftDeletePeriod\": \"1.00:00:00\", \"Recoverability\": \"Disabled\"}``` //WARNING: This is just a demo, do NOT disable Recoverability on your tables!!!\n\n// create EH1 on BCDR2\n// run onelake sync... what happens?\n\n// ran reverse BDDR2 (w/o EH1 existing) to BCDR1, did not  effect BCDR1.EH1.\n// committed to git BCDR1 items, and sync'ed changes to BCDR2.\n// BCDR2.EH1 contained empty table Counter_raw and policies of BCDR1. \n\n// app can failover to new EH1 endpoint when necessary.\n\n// get bcdr1 > eh1 clus uri\nprint uri=current_cluster_endpoint(), db=current_database()\n\n//\"uri\": trd-3yh68y911w8pmue9mg.z6.kusto.fabric.microsoft.com, \"db\": e421203e-50db-478c-a85f-fdd33d5b6775\n",
+        "content": "// step 1 - create demo assets\n.execute database script <| \n.create table Counter_raw (Data:dynamic)\n.show table Counter_raw policy streamingingestion\n.show database policy streamingingestion //if IsEnabled = true, table will inherit database policy.\n.alter table Counter_raw policy streamingingestion enable //not required if already enabled for the db. \n\n// get bcdr1 > eh1 clus uri\nprint uri=current_cluster_endpoint(), db=current_database()\n\n// \"uri\": trd-cff114afmpqwdjz7ux.z0.kusto.fabric.microsoft.com, \"db\": 63215130-fa35-4f6c-9f14-dfd263113731\n\n// run streaming ingestion client (once)\n\nCounter_raw\n| count\n\nCounter_raw\n| where ingestion_time() > ago(1s)\n| take 10 \n\nCounter_raw\n| where ingestion_time() > ago(1m)\n| extend DeviceName = tostring(Data.Device.ComputerName), MachineGuid = tostring(Data.Device.MachineGuid)\n| where isnotempty(MachineGuid)\n\n// run streaming ingestion client (infinite loop)\n\nCounter_raw\n| count //growing\n\n.show database policy caching //infinite is default, well 36500d = 100yrs :)\n\n.alter database EH1 policy caching hot = 30m\n\n.show table Counter_raw policy retention\n\n.alter table Counter_raw policy retention ```{\"SoftDeletePeriod\": \"7.00:00:00\", \"Recoverability\": \"Disabled\"}``` //WARNING: This is just a demo, do NOT disable Recoverability on your tables!!!\n\n\n// create EH1 on BCDR2\n// run onelake sync... what happens?\n\n// ran reverse BDDR2 (w/o EH1 existing) to BCDR1, did not  effect BCDR1.EH1.\n// committed to git BCDR1 items, and sync'ed changes to BCDR2.\n// BCDR2.EH1 contained empty table Counter_raw and policies of BCDR1. \n\n// app can failover to new EH1 endpoint when necessary.\n\n// get bcdr1 > eh1 clus uri\nprint uri=current_cluster_endpoint(), db=current_database()\n\n//\"uri\": trd-3yh68y911w8pmue9mg.z6.kusto.fabric.microsoft.com, \"db\": e421203e-50db-478c-a85f-fdd33d5b6775\n",
         "title": "Tab",
-        "dataSourceId": "b9626462-0115-491c-a8c4-3241aeb26bb0"
+        "dataSourceId": "eeadbc6a-aa5d-40c4-b974-3a185c816e2d"
       }
     ]
   }

@@ -3,5 +3,5 @@
 
 
 .create-merge table Counter_raw (Data:dynamic) 
-.alter table Counter_raw policy retention @'{"SoftDeletePeriod":"1.00:00:00","Recoverability":"Disabled"}'
+.alter table Counter_raw policy retention @'{"SoftDeletePeriod":"7.00:00:00","Recoverability":"Disabled"}'
 .alter table Counter_raw policy streamingingestion "{\"IsEnabled\":true,\"HintAllocatedRate\":null,\"NumberOfRowStores\":null,\"SealIntervalLimit\":null,\"SealThresholdBytes\":null,\"UsageTags\":[],\"IsMaintenanceActive\":false}"

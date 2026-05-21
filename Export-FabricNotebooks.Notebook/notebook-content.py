@@ -86,16 +86,36 @@ for nb in notebooks:
 
 import time
 
+def request_with_retry(method, url, headers, max_retries=5):
+    """Make an HTTP request with retry logic for 429 throttling."""
+    for attempt in range(max_retries):
+        if method == "GET":
+            resp = requests.get(url, headers=headers)
+        else:
+            resp = requests.post(url, headers=headers)
+
+        if resp.status_code == 429:
+            retry_after = int(resp.headers.get("Retry-After", 30))
+            print(f"    Throttled (429). Waiting {retry_after}s before retry (attempt {attempt + 1}/{max_retries})...")
+            time.sleep(retry_after)
+            continue
+        return resp
+
+    print(f"    Max retries exceeded for {url}")
+    return resp
+
 def wait_for_operation(operation_url, headers, max_retries=30):
     """Poll a long-running operation until complete."""
     for _ in range(max_retries):
         time.sleep(5)
-        op_response = requests.get(operation_url, headers=headers)
+        op_response = request_with_retry("GET", operation_url, headers)
+        if op_response.status_code == 429:
+            continue  # already waited inside request_with_retry
         op_response.raise_for_status()
         op_body = op_response.json()
         if op_body.get("status") == "Succeeded":
             result_url = f"{operation_url}/result"
-            result = requests.get(result_url, headers=headers)
+            result = request_with_retry("GET", result_url, headers)
             result.raise_for_status()
             return result.json()
         elif op_body.get("status") == "Failed":
@@ -124,7 +144,7 @@ for notebook in notebooks:
     def_url = f"{base_url}/workspaces/{workspace_id}/notebooks/{notebook_id}/getDefinition"
 
     try:
-        def_response = requests.post(def_url, headers=headers)
+        def_response = request_with_retry("POST", def_url, headers)
 
         if def_response.status_code == 200:
             definition = def_response.json()
@@ -135,6 +155,9 @@ for notebook in notebooks:
                 op_id = def_response.headers.get("x-ms-operation-id")
                 operation_url = f"{base_url}/operations/{op_id}"
             definition = wait_for_operation(operation_url, headers)
+        elif def_response.status_code == 429:
+            print(f"  Skipped (still throttled after retries): {notebook_name}")
+            continue
         else:
             print(f"  Unexpected status {def_response.status_code}: {def_response.text}")
             continue

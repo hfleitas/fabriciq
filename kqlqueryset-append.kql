@@ -1,0 +1,6 @@
+.set-or-append MyTable <|
+datatable(Id:int, Value:string)
+[
+    101, "NewValue1",
+    102, "NewValue2"
+]

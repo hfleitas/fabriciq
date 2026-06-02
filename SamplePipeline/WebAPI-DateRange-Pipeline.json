@@ -1,0 +1,408 @@
+{
+  "name": "WebAPI-DateRange-Pipeline",
+  "properties": {
+    "activities": [
+      {
+        "name": "Initialize Variables",
+        "type": "ExecutePipeline",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "7.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "pipeline": {
+            "referenceName": "InitializeVariables",
+            "type": "PipelineReference"
+          }
+        }
+      },
+      {
+        "name": "Set Start Date",
+        "type": "SetVariable",
+        "dependsOn": [
+          {
+            "activity": "Initialize Variables",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "userProperties": [],
+        "typeProperties": {
+          "variableName": "startDate",
+          "value": {
+            "value": "@adddays(utcnow(), -30)",
+            "type": "Expression"
+          }
+        }
+      },
+      {
+        "name": "Set Initial Min/Max Dates",
+        "type": "SetVariable",
+        "dependsOn": [
+          {
+            "activity": "Set Start Date",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "userProperties": [],
+        "typeProperties": {
+          "variableName": "minDate",
+          "value": {
+            "value": "@variables('startDate')",
+            "type": "Expression"
+          }
+        }
+      },
+      {
+        "name": "Set Max Date Var",
+        "type": "SetVariable",
+        "dependsOn": [
+          {
+            "activity": "Set Initial Min/Max Dates",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "userProperties": [],
+        "typeProperties": {
+          "variableName": "maxDate",
+          "value": {
+            "value": "@utcnow()",
+            "type": "Expression"
+          }
+        }
+      },
+      {
+        "name": "Set Page Token",
+        "type": "SetVariable",
+        "dependsOn": [
+          {
+            "activity": "Set Max Date Var",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "userProperties": [],
+        "typeProperties": {
+          "variableName": "pageToken",
+          "value": ""
+        }
+      },
+      {
+        "name": "Set Continue Flag",
+        "type": "SetVariable",
+        "dependsOn": [
+          {
+            "activity": "Set Page Token",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "userProperties": [],
+        "typeProperties": {
+          "variableName": "continueLoop",
+          "value": true
+        }
+      },
+      {
+        "name": "Until No Response",
+        "type": "Until",
+        "dependsOn": [
+          {
+            "activity": "Set Continue Flag",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "userProperties": [],
+        "typeProperties": {
+          "expression": {
+            "value": "@equals(variables('continueLoop'), false)",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "name": "Call Web API",
+              "type": "WebActivity",
+              "dependsOn": [],
+              "policy": {
+                "timeout": "7.00:00:00",
+                "retry": 2,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "userProperties": [],
+              "typeProperties": {
+                "url": "https://api.example.com/data?startDate=@{variables('minDate')}&endDate=@{variables('maxDate')}&pageToken=@{variables('pageToken')}",
+                "method": "GET",
+                "headers": {
+                  "Authorization": "Bearer @{variables('apiToken')}",
+                  "Content-Type": "application/json"
+                },
+                "authentication": {
+                  "type": "MSI",
+                  "resource": "https://api.example.com"
+                }
+              }
+            },
+            {
+              "name": "Check Response",
+              "type": "IfActivity",
+              "dependsOn": [
+                {
+                  "activity": "Call Web API",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ],
+              "userProperties": [],
+              "typeProperties": {
+                "expression": {
+                  "value": "@not(empty(activity('Call Web API').output))",
+                  "type": "Expression"
+                },
+                "ifTrueActivities": [
+                  {
+                    "name": "Parse Response",
+                    "type": "SetVariable",
+                    "dependsOn": [],
+                    "userProperties": [],
+                    "typeProperties": {
+                      "variableName": "apiResponse",
+                      "value": {
+                        "value": "@activity('Call Web API').output",
+                        "type": "Expression"
+                      }
+                    }
+                  },
+                  {
+                    "name": "Extract Min Date",
+                    "type": "SetVariable",
+                    "dependsOn": [
+                      {
+                        "activity": "Parse Response",
+                        "dependencyConditions": [
+                          "Succeeded"
+                        ]
+                      }
+                    ],
+                    "userProperties": [],
+                    "typeProperties": {
+                      "variableName": "minDate",
+                      "value": {
+                        "value": "@min(activity('Call Web API').output.data[*].createdDate)",
+                        "type": "Expression"
+                      }
+                    }
+                  },
+                  {
+                    "name": "Extract Max Date",
+                    "type": "SetVariable",
+                    "dependsOn": [
+                      {
+                        "activity": "Extract Min Date",
+                        "dependencyConditions": [
+                          "Succeeded"
+                        ]
+                      }
+                    ],
+                    "userProperties": [],
+                    "typeProperties": {
+                      "variableName": "maxDate",
+                      "value": {
+                        "value": "@max(activity('Call Web API').output.data[*].createdDate)",
+                        "type": "Expression"
+                      }
+                    }
+                  },
+                  {
+                    "name": "Extract Next Page Token",
+                    "type": "SetVariable",
+                    "dependsOn": [
+                      {
+                        "activity": "Extract Max Date",
+                        "dependencyConditions": [
+                          "Succeeded"
+                        ]
+                      }
+                    ],
+                    "userProperties": [],
+                    "typeProperties": {
+                      "variableName": "pageToken",
+                      "value": {
+                        "value": "@activity('Call Web API').output.nextPageToken",
+                        "type": "Expression"
+                      }
+                    }
+                  },
+                  {
+                    "name": "Save Response to Lakehouse",
+                    "type": "Copy",
+                    "dependsOn": [
+                      {
+                        "activity": "Extract Next Page Token",
+                        "dependencyConditions": [
+                          "Succeeded"
+                        ]
+                      }
+                    ],
+                    "policy": {
+                      "timeout": "7.00:00:00",
+                      "retry": 2,
+                      "retryIntervalInSeconds": 30,
+                      "secureOutput": false,
+                      "secureInput": false
+                    },
+                    "userProperties": [],
+                    "typeProperties": {
+                      "source": {
+                        "type": "JsonSource",
+                        "storeSettings": {
+                          "type": "HttpReadSettings",
+                          "requestMethod": "GET"
+                        },
+                        "formatSettings": {
+                          "type": "JsonReadSettings"
+                        }
+                      },
+                      "sink": {
+                        "type": "ParquetSink",
+                        "storeSettings": {
+                          "type": "LakehouseWriteSettings"
+                        },
+                        "formatSettings": {
+                          "type": "ParquetWriteSettings"
+                        }
+                      },
+                      "enableStaging": false
+                    }
+                  },
+                  {
+                    "name": "Check for More Data",
+                    "type": "IfActivity",
+                    "dependsOn": [
+                      {
+                        "activity": "Save Response to Lakehouse",
+                        "dependencyConditions": [
+                          "Succeeded"
+                        ]
+                      }
+                    ],
+                    "userProperties": [],
+                    "typeProperties": {
+                      "expression": {
+                        "value": "@empty(variables('pageToken'))",
+                        "type": "Expression"
+                      },
+                      "ifTrueActivities": [
+                        {
+                          "name": "Stop Loop - No More Data",
+                          "type": "SetVariable",
+                          "dependsOn": [],
+                          "userProperties": [],
+                          "typeProperties": {
+                            "variableName": "continueLoop",
+                            "value": false
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "ifFalseActivities": [
+                  {
+                    "name": "Stop Loop - Empty Response",
+                    "type": "SetVariable",
+                    "dependsOn": [],
+                    "userProperties": [],
+                    "typeProperties": {
+                      "variableName": "continueLoop",
+                      "value": false
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "timeout": "7.00:00:00"
+        }
+      },
+      {
+        "name": "Log Completion",
+        "type": "WebActivity",
+        "dependsOn": [
+          {
+            "activity": "Until No Response",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "7.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "url": "https://your-logging-service.com/log",
+          "method": "POST",
+          "body": {
+            "value": "@json(concat('{\"status\":\"Pipeline completed\",\"minDate\":\"', variables('minDate'), '\",\"maxDate\":\"', variables('maxDate'), '\"}'))",
+            "type": "Expression"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "apiEndpoint": {
+        "type": "string",
+        "defaultValue": "https://api.example.com/data"
+      },
+      "lakehouseTarget": {
+        "type": "string",
+        "defaultValue": "api_data"
+      }
+    },
+    "variables": {
+      "startDate": {
+        "type": "String"
+      },
+      "minDate": {
+        "type": "String"
+      },
+      "maxDate": {
+        "type": "String"
+      },
+      "pageToken": {
+        "type": "String"
+      },
+      "continueLoop": {
+        "type": "Boolean"
+      },
+      "apiResponse": {
+        "type": "Object"
+      },
+      "apiToken": {
+        "type": "String"
+      }
+    },
+    "annotations": []
+  }
+}
